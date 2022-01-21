@@ -4,22 +4,16 @@ import "./styles/App.css";
 import { useEffect, useState } from "react";
 
 import { Card } from "./components/Card";
-import { Label } from "./components/Label";
+import { Chart } from "./components/Chart";
 
 import { Steps } from "./types/Steps";
 import { Package } from "./types/Package";
+import { Statistics } from "./types/Statistics";
 
-import { PieChart, Pie, Cell, LabelList } from "recharts";
 import Logo from "./assets/Logo.svg";
 
-type Statistics = {
-  name: string;
-  label: string;
-  value: number;
-  percent: string;
-};
-
 function App() {
+  const [loading, setLoading] = useState(true);
   const [packages, setPackages] = useState<Package[]>([
     {
       id: "SOME",
@@ -63,9 +57,9 @@ function App() {
     }));
 
     setStatistics(formatted);
-  }, []);
 
-  const colors = ["#5636D3", "#FF872C", "#12A454", "#E83F5B"];
+    setTimeout(() => setLoading(false), 5000);
+  }, []);
 
   return (
     <main className="container">
@@ -74,37 +68,24 @@ function App() {
       </header>
       <h1>Pacotes</h1>
       <div className="cards">
-        {packages.map((data) => (
-          <Card data={data} key={data.id} />
-        ))}
+        {loading ? (
+          <>
+            <div className="shimmer-card"></div>
+            <div className="shimmer-card"></div>
+            <div className="shimmer-card"></div>
+            <div className="shimmer-card"></div>
+          </>
+        ) : (
+          packages.map((data) => <Card data={data} key={data.id} />)
+        )}
       </div>
       <h1>Estatísticas</h1>
       <div className="statistics-container">
-        <PieChart width={300} height={250}>
-          <Pie
-            data={statistics}
-            dataKey="value"
-            nameKey="label"
-            cx="50%"
-            cy="50%"
-            outerRadius={100}
-          >
-            {statistics.map((_, index) => (
-              <Cell key={`cell-${index}`} fill={colors[index]} />
-            ))}
-            <LabelList dataKey="percent" position="inside" />
-          </Pie>
-        </PieChart>
-        <div className="labels">
-          {statistics.map((item, index) => (
-            <Label
-              title={item.label}
-              value={item.value}
-              color={colors[index]}
-              key={item.name}
-            />
-          ))}
-        </div>
+        {loading ? (
+          <div className="shimmer-graphic"></div>
+        ) : (
+          <Chart statistics={statistics} />
+        )}
       </div>
     </main>
   );
