@@ -9,8 +9,7 @@
   },
   "dependencies": {
     "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-step-progress-bar": "^1.0.3"
+    "react-dom": "^17.0.2"
   },
   "devDependencies": {
     "@types/react": "^17.0.33",
