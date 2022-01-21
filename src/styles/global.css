@@ -1,0 +1,36 @@
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --color-yellow: #fff1d6;
+  --color-green: #00da6d;
+  --color-white: #ffffff;
+  --color-ice-white: #f0f0f5;
+  --color-grey: #dad7e0;
+  --color-dark-grey: #bebccc;
+  --color-purple: #6f6c80;
+  --color-dark-purple: #4c4766;
+  --color-light-black: #3a3a3a;
+
+  font-size: 60%;
+}
+
+body {
+  background: var(--color-ice-white) url("../assets/Background.svg") no-repeat
+    90% top;
+  -webkit-font-smoothing: antialiased;
+}
+
+body,
+input,
+button {
+  font: 16px Roboto, sans-serif;
+}
+
+button {
+  cursor: pointer;
+}
