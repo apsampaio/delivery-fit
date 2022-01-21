@@ -1,25 +1,33 @@
 import "./styles.css";
 
-import Package from "../../assets/Package.svg";
+import PackageSVG from "../../assets/Package.svg";
 import Arrow from "../../assets/Arrow.svg";
 
 import { StepProgress } from "../StepProgress";
-import { Steps } from "../../types/Steps";
+import { Package } from "../../types/Package";
 
 type Props = {
-  step: Steps;
+  data: Package;
 };
 
-const Card: React.FC<Props> = ({ step }) => {
+const Card: React.FC<Props> = ({ data }) => {
+  const formattedData = Intl.DateTimeFormat("pt-BR", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  }).format(data.lastUpdate);
+
+  const formattedNumber = data.packageNumber.toString().padStart(2, "0");
+
   return (
     <div className="card-container">
       <div className="head">
-        <img src={Package} alt="package" />
-        <strong>Pacote 01</strong>
-        <p>01/07/2020</p>
+        <img src={PackageSVG} alt="package" />
+        <strong>Pacote {formattedNumber}</strong>
+        <p>{formattedData}</p>
       </div>
       <div className="status">
-        <StepProgress step={step} />
+        <StepProgress step={data.step} />
       </div>
       <button className="details">
         <p>Detalhes</p>
