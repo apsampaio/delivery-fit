@@ -4,8 +4,13 @@ import Package from "../../assets/Package.svg";
 import Arrow from "../../assets/Arrow.svg";
 
 import { StepProgress } from "../StepProgress";
+import { Steps } from "../../types/Steps";
 
-const Card: React.FC = () => {
+type Props = {
+  step: Steps;
+};
+
+const Card: React.FC<Props> = ({ step }) => {
   return (
     <div className="card-container">
       <div className="head">
@@ -14,7 +19,7 @@ const Card: React.FC = () => {
         <p>01/07/2020</p>
       </div>
       <div className="status">
-        <StepProgress />
+        <StepProgress step={step} />
       </div>
       <button className="details">
         <p>Detalhes</p>

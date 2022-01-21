@@ -4,6 +4,7 @@ import "./styles/App.css";
 import Logo from "./assets/Logo.svg";
 
 import { Card } from "./components/Card";
+import { Steps } from "./types/Steps";
 
 function App() {
   return (
@@ -13,21 +14,10 @@ function App() {
       </header>
       <h1>Pacotes</h1>
       <div className="cards">
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+        <Card step={Steps.waiting} />
+        <Card step={Steps.transporting} />
+        <Card step={Steps.delivered} />
+        <Card step={Steps.misplaced} />
       </div>
     </main>
   );

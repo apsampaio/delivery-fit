@@ -64,3 +64,22 @@ div.progress-container ul.progressbar li.active:before {
 div.progress-container ul.progressbar li.active:after {
   background-color: var(--color-green);
 }
+
+div.progress-container ul.progressbar li.misplaced {
+  color: var(--color-red);
+}
+
+div.progress-container ul.progressbar li.misplaced:before {
+  background-color: var(--color-red);
+  visibility: visible;
+}
+
+div.progress-container ul.progressbar li.misplaced:after {
+  background-color: var(--color-red);
+  visibility: visible;
+}
+
+div.progress-container ul.progressbar li.hidden {
+  color: var(--color-red);
+  visibility: hidden;
+}
