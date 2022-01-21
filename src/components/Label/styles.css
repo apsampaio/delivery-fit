@@ -1,0 +1,32 @@
+div.label-container {
+  width: 200px;
+  height: 48px;
+
+  background-color: var(--color-white);
+  border-radius: 5px;
+  border-left: 4px solid #5636d3;
+
+  display: flex;
+  align-items: center;
+
+  margin-bottom: 8px;
+}
+
+div.label-container p {
+  font-size: 15px;
+  font-family: "Poppins", sans-serif;
+  color: var(--color-dark-blue);
+
+  padding-left: 16px;
+}
+
+div.label-container strong {
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+  font-size: 15px;
+
+  color: var(--color-dark-blue);
+
+  margin-right: 16px;
+  margin-left: auto;
+}
