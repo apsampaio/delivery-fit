@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 
 import { Card } from "./components/Card";
 import { Chart } from "./components/Chart";
+import { Modal } from "./components/Modal";
 
 import { Steps } from "./types/Steps";
 import { Package } from "./types/Package";
@@ -62,32 +63,35 @@ function App() {
   }, []);
 
   return (
-    <main className="container">
-      <header>
-        <img src={Logo} alt="logo" />
-      </header>
-      <h1>Pacotes</h1>
-      <div className="cards">
-        {loading ? (
-          <>
-            <div className="shimmer-card"></div>
-            <div className="shimmer-card"></div>
-            <div className="shimmer-card"></div>
-            <div className="shimmer-card"></div>
-          </>
-        ) : (
-          packages.map((data) => <Card data={data} key={data.id} />)
-        )}
-      </div>
-      <h1>Estatísticas</h1>
-      <div className="statistics-container">
-        {loading ? (
-          <div className="shimmer-graphic"></div>
-        ) : (
-          <Chart statistics={statistics} />
-        )}
-      </div>
-    </main>
+    <>
+      <main className="container">
+        <header>
+          <img src={Logo} alt="logo" />
+        </header>
+        <h1>Pacotes</h1>
+        <div className="cards">
+          {loading ? (
+            <>
+              <div className="shimmer-card"></div>
+              <div className="shimmer-card"></div>
+              <div className="shimmer-card"></div>
+              <div className="shimmer-card"></div>
+            </>
+          ) : (
+            packages.map((data) => <Card data={data} key={data.id} />)
+          )}
+        </div>
+        <h1>Estatísticas</h1>
+        <div className="statistics-container">
+          {loading ? (
+            <div className="shimmer-graphic"></div>
+          ) : (
+            <Chart statistics={statistics} />
+          )}
+        </div>
+      </main>
+      <Modal />
+    </>
   );
 }
 
