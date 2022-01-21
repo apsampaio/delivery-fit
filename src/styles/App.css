@@ -6,6 +6,8 @@ main.container {
   flex-direction: column;
 
   padding: 0 80px;
+
+  overflow-x: hidden;
 }
 
 main.container header {
