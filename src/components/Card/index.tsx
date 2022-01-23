@@ -8,17 +8,18 @@ import { Package } from "../../types/Package";
 
 type Props = {
   data: Package;
+  index: number;
   openModal: () => void;
 };
 
-const Card: React.FC<Props> = ({ data, openModal }) => {
+const Card: React.FC<Props> = ({ data, index, openModal }) => {
   const formattedData = Intl.DateTimeFormat("pt-BR", {
     day: "2-digit",
     month: "2-digit",
     year: "numeric",
-  }).format(data.lastUpdate);
+  }).format(new Date(data.updatedAt));
 
-  const formattedNumber = data.packageNumber.toString().padStart(2, "0");
+  const formattedNumber = index.toString().padStart(2, "0");
 
   return (
     <div className="card-container">
@@ -28,7 +29,7 @@ const Card: React.FC<Props> = ({ data, openModal }) => {
         <p>{formattedData}</p>
       </div>
       <div className="status">
-        <StepProgress step={data.step} />
+        <StepProgress step={data.status} />
       </div>
       <button className="details" onClick={openModal}>
         <p>Detalhes</p>

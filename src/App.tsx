@@ -11,23 +11,27 @@ import { Steps } from "./types/Steps";
 import { Package } from "./types/Package";
 import { Statistics } from "./types/Statistics";
 
+import { api } from "./services/api";
+
 import Logo from "./assets/Logo.svg";
 
 function App() {
   const [loading, setLoading] = useState(true);
   const [modalVisible, setModalVisible] = useState(false);
-  const [packages, setPackages] = useState<Package[]>([
-    {
-      id: "SOME",
-      lastUpdate: new Date(),
-      packageNumber: 1,
-      step: Steps.waiting,
-    },
-  ]);
+  const [packages, setPackages] = useState<Package[]>([]);
   const [statistics, setStatistics] = useState<Statistics[]>([]);
 
   const openModal = () => setModalVisible(true);
   const closeModal = () => setModalVisible(false);
+
+  useEffect(() => {
+    const getPackages = async () => {
+      const { data } = await api.get<Package[]>("package");
+      setPackages(data);
+    };
+
+    getPackages();
+  }, []);
 
   useEffect(() => {
     const data: Omit<Statistics, "percent">[] = [
@@ -82,8 +86,13 @@ function App() {
               <div className="shimmer-card"></div>
             </>
           ) : (
-            packages.map((data) => (
-              <Card data={data} key={data.id} openModal={openModal} />
+            packages.map((data, index) => (
+              <Card
+                data={data}
+                key={data.id}
+                index={index + 1}
+                openModal={openModal}
+              />
             ))
           )}
         </div>

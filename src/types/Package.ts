@@ -2,9 +2,8 @@ import { Steps } from "./Steps";
 
 type Package = {
   id: string;
-  step: Steps;
-  lastUpdate: Date;
-  packageNumber: number;
+  status: Steps;
+  updatedAt: Date;
 };
 
 export type { Package };
