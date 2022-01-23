@@ -23,7 +23,19 @@ div.modal-container div.modal-box {
   background-color: var(--color-ice-white);
 
   display: flex;
+  position: relative;
+
   padding-top: 60px;
+}
+
+div.modal-container div.modal-box img.close-modal {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}
+
+div.modal-container div.modal-box img.close-modal:hover {
+  cursor: pointer;
 }
 
 div.modal-container div.modal-box div.information {

@@ -9,7 +9,7 @@ type Props = {
 };
 
 const Chart: React.FC<Props> = ({ statistics }) => {
-  const colors = ["#5636D3", "#FF872C", "#12A454", "#E83F5B"];
+  const colors = ["#5636D3", "#FF872C", "#12A454", "#E83F5B", "#2F80ED"];
 
   return (
     <>

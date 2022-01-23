@@ -15,6 +15,7 @@ import Logo from "./assets/Logo.svg";
 
 function App() {
   const [loading, setLoading] = useState(true);
+  const [modalVisible, setModalVisible] = useState(false);
   const [packages, setPackages] = useState<Package[]>([
     {
       id: "SOME",
@@ -24,6 +25,9 @@ function App() {
     },
   ]);
   const [statistics, setStatistics] = useState<Statistics[]>([]);
+
+  const openModal = () => setModalVisible(true);
+  const closeModal = () => setModalVisible(false);
 
   useEffect(() => {
     const data: Omit<Statistics, "percent">[] = [
@@ -78,7 +82,9 @@ function App() {
               <div className="shimmer-card"></div>
             </>
           ) : (
-            packages.map((data) => <Card data={data} key={data.id} />)
+            packages.map((data) => (
+              <Card data={data} key={data.id} openModal={openModal} />
+            ))
           )}
         </div>
         <h1>Estatísticas</h1>
@@ -90,7 +96,7 @@ function App() {
           )}
         </div>
       </main>
-      <Modal />
+      {modalVisible && <Modal closeModal={closeModal} />}
     </>
   );
 }

@@ -8,9 +8,10 @@ import { Package } from "../../types/Package";
 
 type Props = {
   data: Package;
+  openModal: () => void;
 };
 
-const Card: React.FC<Props> = ({ data }) => {
+const Card: React.FC<Props> = ({ data, openModal }) => {
   const formattedData = Intl.DateTimeFormat("pt-BR", {
     day: "2-digit",
     month: "2-digit",
@@ -29,7 +30,7 @@ const Card: React.FC<Props> = ({ data }) => {
       <div className="status">
         <StepProgress step={data.step} />
       </div>
-      <button className="details">
+      <button className="details" onClick={openModal}>
         <p>Detalhes</p>
         <img src={Arrow} alt="arrow" />
       </button>

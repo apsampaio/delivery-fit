@@ -2,11 +2,30 @@ import "./styles.css";
 
 import InformationSVG from "../../assets/Information.svg";
 import StatusSVG from "../../assets/Status.svg";
+import closeModalSVG from "../../assets/x.svg";
 
-const Modal: React.FC = () => {
+import React from "react";
+
+type Props = {
+  closeModal: () => void;
+};
+
+const Modal: React.FC<Props> = ({ closeModal }) => {
+  const handleClick = (ev: React.MouseEvent<any>) => {
+    ev.preventDefault();
+    const element: any = ev.target;
+    if (element.className === "modal-container") closeModal();
+  };
+
   return (
-    <div className="modal-container">
+    <div className="modal-container" onClick={handleClick}>
       <div className="modal-box">
+        <img
+          src={closeModalSVG}
+          alt="close"
+          className="close-modal"
+          onClick={closeModal}
+        />
         <div className="information">
           <p className="title">
             <img src={InformationSVG} alt="information" />

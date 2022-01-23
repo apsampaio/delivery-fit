@@ -78,6 +78,8 @@ div.shimmer-graphic {
   background: linear-gradient(to right, #fff 4%, #eff1f3 25%, #fff 36%);
 
   border-radius: 100%;
+
+  margin-left: 40px;
 }
 
 @keyframes shimmer-graphic {
