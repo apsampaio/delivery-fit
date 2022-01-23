@@ -9,7 +9,7 @@ import { Package } from "../../types/Package";
 type Props = {
   data: Package;
   index: number;
-  openModal: () => void;
+  openModal: (id: string) => void;
 };
 
 const Card: React.FC<Props> = ({ data, index, openModal }) => {
@@ -21,6 +21,10 @@ const Card: React.FC<Props> = ({ data, index, openModal }) => {
 
   const formattedNumber = index.toString().padStart(2, "0");
 
+  const handleOpenModal = (id: string) => {
+    openModal(id);
+  };
+
   return (
     <div className="card-container">
       <div className="head">
@@ -31,7 +35,7 @@ const Card: React.FC<Props> = ({ data, index, openModal }) => {
       <div className="status">
         <StepProgress step={data.status} />
       </div>
-      <button className="details" onClick={openModal}>
+      <button className="details" onClick={() => handleOpenModal(data.id)}>
         <p>Detalhes</p>
         <img src={Arrow} alt="arrow" />
       </button>

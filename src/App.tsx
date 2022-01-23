@@ -7,7 +7,6 @@ import { Card } from "./components/Card";
 import { Chart } from "./components/Chart";
 import { Modal } from "./components/Modal";
 
-import { Steps } from "./types/Steps";
 import { Package } from "./types/Package";
 import { Statistics } from "./types/Statistics";
 
@@ -20,9 +19,17 @@ function App() {
   const [modalVisible, setModalVisible] = useState(false);
   const [packages, setPackages] = useState<Package[]>([]);
   const [statistics, setStatistics] = useState<Statistics[]>([]);
+  const [selectedPackage, setSelectedPackage] = useState<string | null>(null);
 
-  const openModal = () => setModalVisible(true);
-  const closeModal = () => setModalVisible(false);
+  const openModal = (id: string) => {
+    setModalVisible(true);
+    setSelectedPackage(id);
+  };
+
+  const closeModal = () => {
+    setModalVisible(false);
+    setSelectedPackage(null);
+  };
 
   useEffect(() => {
     const getPackages = async () => {
@@ -105,7 +112,7 @@ function App() {
           )}
         </div>
       </main>
-      {modalVisible && <Modal closeModal={closeModal} />}
+      {modalVisible && <Modal closeModal={closeModal} id={selectedPackage} />}
     </>
   );
 }
