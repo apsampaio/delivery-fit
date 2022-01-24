@@ -26,6 +26,8 @@ type Props = {
 const Modal: React.FC<Props> = ({ closeModal, id }) => {
   const [details, setDetails] = useState<Details | null>(null);
   const [info, setInfo] = useState<Zipcode | null>();
+  const [loading, setLoading] = useState(true);
+
   const handleClick = (ev: React.MouseEvent<any>) => {
     ev.preventDefault();
     const element: any = ev.target;
@@ -42,6 +44,7 @@ const Modal: React.FC<Props> = ({ closeModal, id }) => {
       );
 
       setInfo(res.data);
+      setLoading(false);
     };
 
     if (id) {
@@ -73,16 +76,16 @@ const Modal: React.FC<Props> = ({ closeModal, id }) => {
             Dados
           </p>
           <p className="subtitle">DESTINATÁRIO</p>
-          <p className="text">{details?.recipient}</p>
+          <p className={`text ${loading && "shimmer"}`}>{details?.recipient}</p>
 
           <p className="subtitle">ENDEREÇO</p>
-          <p className="text">
+          <p className={`text ${loading && "shimmer"}`}>
             {info?.logradouro}, {details?.houseNumber}
           </p>
-          <p className="text">
+          <p className={`text ${loading && "shimmer"}`}>
             {info?.localidade}, {info?.uf}
           </p>
-          <p className="text">{details?.zipcode}</p>
+          <p className={`text ${loading && "shimmer"}`}>{details?.zipcode}</p>
         </div>
         <div className="status">
           <p className="title">
@@ -92,30 +95,32 @@ const Modal: React.FC<Props> = ({ closeModal, id }) => {
           <div className="situation-container">
             <div>
               <p className="subtitle">STATUS</p>
-              <p className="text">{Status[details?.package.status || 0]}</p>
+              <p className={`text ${loading && "shimmer"}`}>
+                {Status[details?.package.status || 0]}
+              </p>
             </div>
             <div>
               <p className="subtitle">POSTADO EM</p>
-              <p className="text">
+              <p className={`text ${loading && "shimmer"}`}>
                 {details?.postedAt
                   ? formatDate(details?.postedAt)
-                  : "--/--/----"}
+                  : "--/--/---- --:--"}
               </p>
             </div>
             <div>
               <p className="subtitle">DATA DE RETIRADA</p>
-              <p className="text">
+              <p className={`text ${loading && "shimmer"}`}>
                 {details?.withdrawnAt
                   ? formatDate(details?.withdrawnAt)
-                  : "--/--/----"}
+                  : "--/--/---- --:--"}
               </p>
             </div>
             <div>
               <p className="subtitle">DATA DE ENTREGA</p>
-              <p className="text">
+              <p className={`text ${loading && "shimmer"}`}>
                 {details?.deliveredAt
                   ? formatDate(details?.deliveredAt)
-                  : "--/--/----"}
+                  : "--/--/---- --:--"}
               </p>
             </div>
           </div>

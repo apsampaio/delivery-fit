@@ -70,6 +70,26 @@ div.modal-container
   flex-basis: 50%;
 }
 
+div.modal-container div.modal-box .shimmer {
+  animation: shimmer-modal 2s infinite ease;
+  background: linear-gradient(to right, #f0f0f5 4%, #e1e1e9 25%, #f0f0f5 36%);
+
+  margin-right: 32px;
+
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@keyframes shimmer-modal {
+  0% {
+    background-position: -327px 0;
+  }
+  100% {
+    background-position: 327px 0;
+  }
+}
+
 div.modal-container div.modal-box p.title {
   font-family: "Roboto", sans-serif;
   font-weight: bold;
