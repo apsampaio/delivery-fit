@@ -18,7 +18,6 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [modalVisible, setModalVisible] = useState(false);
   const [packages, setPackages] = useState<Package[]>([]);
-  const [statistics, setStatistics] = useState<Statistics[]>([]);
   const [selectedPackage, setSelectedPackage] = useState<string | null>(null);
 
   const openModal = (id: string) => {
@@ -38,43 +37,7 @@ function App() {
     };
 
     getPackages();
-  }, []);
-
-  useEffect(() => {
-    const data: Omit<Statistics, "percent">[] = [
-      {
-        name: "waiting",
-        label: "Aguardando",
-        value: 12,
-      },
-      {
-        name: "transporting",
-        label: "Transporte",
-        value: 7,
-      },
-      {
-        name: "delivered",
-        label: "Entregue",
-        value: 5,
-      },
-      {
-        name: "misplaced",
-        label: "Extraviado",
-        value: 1,
-      },
-    ];
-
-    let total = 0;
-    data.map((item) => (total += item.value));
-
-    const formatted: Statistics[] = data.map((item) => ({
-      ...item,
-      percent: Math.round((item.value / total) * 100) + "%",
-    }));
-
-    setStatistics(formatted);
-
-    setTimeout(() => setLoading(false), 5000);
+    setLoading(false);
   }, []);
 
   return (
@@ -105,11 +68,7 @@ function App() {
         </div>
         <h1>Estatísticas</h1>
         <div className="statistics-container">
-          {loading ? (
-            <div className="shimmer-graphic"></div>
-          ) : (
-            <Chart statistics={statistics} />
-          )}
+          <Chart />
         </div>
       </main>
       {modalVisible && <Modal closeModal={closeModal} id={selectedPackage} />}

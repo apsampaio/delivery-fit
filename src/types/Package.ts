@@ -1,8 +1,8 @@
-import { Steps } from "./Steps";
+import { Status } from "./Status";
 
 type Package = {
   id: string;
-  status: Steps;
+  status: Status;
   updatedAt: Date;
 };
 

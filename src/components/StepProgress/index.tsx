@@ -1,12 +1,12 @@
 import "./styles.css";
-import { Steps } from "../../types/Steps";
+import { Status } from "../../types/Status";
 
 type Props = {
-  step: Steps;
+  step: Status;
 };
 
 const StepProgress: React.FC<Props> = ({ step }) => {
-  return step === Steps.misplaced ? (
+  return step === Status.Extraviado ? (
     <div className="progress-container">
       <ul className="progressbar">
         <li className="misplaced hidden">AGUARDANDO</li>

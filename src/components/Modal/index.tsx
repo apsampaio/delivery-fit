@@ -6,7 +6,7 @@ import StatusSVG from "../../assets/Status.svg";
 import closeModalSVG from "../../assets/x.svg";
 
 import { Details } from "../../types/Details";
-import { Status } from "../../types/Steps";
+import { Status } from "../../types/Status";
 
 import { api } from "../../services/api";
 import axios from "axios";
