@@ -1,7 +1,6 @@
 import { createContext, ReactNode, useContext, useState } from "react";
 import { api } from "../services/api";
-import jwt from "jsonwebtoken";
-import { toast } from "react-toastify";
+import { useJwt } from "react-jwt";
 
 type AuthContextData = {
   user: UserProps;
@@ -33,14 +32,16 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
     const response = await api.post("auth/sign-in", params);
     if (response.status !== 200) throw new Error();
 
-    const decoded = jwt.decode(response.data.token) as UserProps;
+    const data = useJwt(response.data.token);
 
-    setUser({
-      name: decoded.name,
-      nameid: decoded.nameid,
-      exp: decoded.exp,
-      token: response.data.token,
-    });
+    console.log(data);
+
+    // setUser({
+    //   name: decodedToken.name,
+    //   nameid: decodedToken.nameid,
+    //   exp: decoded.exp,
+    //   token: response.data.token,
+    // });
   };
 
   return (

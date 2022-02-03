@@ -11,6 +11,8 @@ import { api } from "../services/api";
 
 import Logo from "../assets/Logo.svg";
 
+import "../styles/Dashboard.css";
+
 function Dashboard() {
   const [loading, setLoading] = useState(true);
   const [modalVisible, setModalVisible] = useState(false);

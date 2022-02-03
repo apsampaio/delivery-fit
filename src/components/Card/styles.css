@@ -56,7 +56,7 @@ div.card-container button.details {
   align-items: center;
   justify-content: space-between;
 
-  background-color: var(--color-yellow);
+  background-color: var(--color-light-yellow);
 
   width: 100%;
   height: 48px;

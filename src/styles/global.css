@@ -9,7 +9,7 @@
   --color-yellow: #fff1d6;
   --color-green: #00da6d;
   --color-red: #eb5757;
-  --color-white: #ffffff;
+  --color-white: #f7f5fa;
   --color-ice-white: #f0f0f5;
   --color-grey: #dad7e0;
   --color-dark-grey: #bebccc;
@@ -17,13 +17,16 @@
   --color-dark-purple: #4c4766;
   --color-dark-blue: #363f5f;
   --color-light-black: #3a3a3a;
+  --color-blue: #4c33cc;
+  --color-yellow: #ffc042;
+  --color-light-yellow: #fff1d6;
+  --color-blue-text: #d5ccff;
 
   font-size: 60%;
 }
 
 body {
-  background: var(--color-ice-white) url("../assets/Background.svg") no-repeat
-    90% top;
+  background: var(--color-ice-white);
   -webkit-font-smoothing: antialiased;
 }
 
