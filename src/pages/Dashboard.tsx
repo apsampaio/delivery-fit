@@ -8,13 +8,17 @@ import { Package } from "../types/Package";
 import { Statistics } from "../types/Statistics";
 
 import { api } from "../services/api";
+import { toast } from "react-toastify";
 
 import Logo from "../assets/Logo.svg";
 
 import "../styles/Dashboard.css";
 
+//FIXME
+
 function Dashboard() {
   const [loading, setLoading] = useState(true);
+  const [loadingCards, setLoadingCards] = useState(true);
   const [modalVisible, setModalVisible] = useState(false);
   const [packages, setPackages] = useState<Package[]>([]);
   const [statistics, setStatistics] = useState<Statistics[]>([]);
@@ -32,32 +36,39 @@ function Dashboard() {
 
   useEffect(() => {
     const getPackages = async () => {
-      const { data } = await api.get<Package[]>("package");
-      setPackages(data);
+      const response = await api.get<Package[]>("package");
+      if (response.status !== 200) throw new Error();
+
+      setLoadingCards(false);
+      setPackages(response.data);
     };
 
-    getPackages();
+    const Promisify = async () => {
+      await toast.promise(getPackages, {
+        pending: "Carregando pacotes...",
+        success: "Pacotes carregados com sucesso.",
+        error: "Falha no carregamento de pacotes.",
+      });
+    };
+
+    Promisify();
   }, []);
 
   useEffect(() => {
     const data: Omit<Statistics, "percent">[] = [
       {
-        name: "waiting",
         label: "Aguardando",
         value: 12,
       },
       {
-        name: "transporting",
         label: "Transporte",
         value: 7,
       },
       {
-        name: "delivered",
         label: "Entregue",
         value: 5,
       },
       {
-        name: "misplaced",
         label: "Extraviado",
         value: 1,
       },
@@ -72,8 +83,6 @@ function Dashboard() {
     }));
 
     setStatistics(formatted);
-
-    setTimeout(() => setLoading(false), 5000);
   }, []);
 
   return (
@@ -84,7 +93,7 @@ function Dashboard() {
         </header>
         <h1>Pacotes</h1>
         <div className="cards">
-          {loading ? (
+          {loadingCards ? (
             <>
               <div className="shimmer-card"></div>
               <div className="shimmer-card"></div>

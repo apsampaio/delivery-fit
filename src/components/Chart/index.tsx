@@ -7,6 +7,7 @@ import { Statistics } from "../../types/Statistics";
 import { Status } from "../../types/Status";
 import { api } from "../../services/api";
 
+//FIXME
 type StatisticsProps = {
   status: Status;
   count: number;
