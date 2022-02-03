@@ -1,12 +1,23 @@
+import { ToastContainer } from "react-toastify";
 import { AuthContextProvider } from "./hooks/Auth";
-import { Dashboard } from "./pages/Dashboard";
-import { SignIn } from "./pages/SignIn";
+import { Router } from "./routes";
 
 const App: React.FC = () => {
   return (
-    <AuthContextProvider>
-      <SignIn />
-    </AuthContextProvider>
+    <>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        closeOnClick
+        pauseOnFocusLoss={false}
+        pauseOnHover={false}
+        draggable
+        rtl={false}
+      />
+      <AuthContextProvider>
+        <Router />
+      </AuthContextProvider>
+    </>
   );
 };
 
