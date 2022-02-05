@@ -92,6 +92,15 @@ main.sign-in-container div.animated-content form button:disabled {
   }
 }
 
+main.sign-in-container div.content p.inspiration {
+  color: var(--color-ice-white);
+  opacity: 0.6;
+}
+
+main.sign-in-container div.content p.inspiration strong {
+  color: var(--color-yellow);
+}
+
 main.sign-in-container div.background {
   flex: 1;
   background: repeating-linear-gradient(

@@ -52,6 +52,12 @@ const Modal: React.FC<Props> = ({ closeModal, id }) => {
     }
   }, []);
 
+  // TODO
+  const handleMisplaced = () => {};
+
+  // TODO
+  const handleUpdateStatus = () => {};
+
   const formatDate = (date: Date) =>
     Intl.DateTimeFormat("pt-BR", {
       day: "2-digit",
@@ -75,6 +81,11 @@ const Modal: React.FC<Props> = ({ closeModal, id }) => {
             <img src={InformationSVG} alt="information" />
             Dados
           </p>
+          <p className="subtitle">POSTADO POR</p>
+          <p className={`text ${loading && "shimmer"}`}>
+            {details?.package.user.name}
+          </p>
+
           <p className="subtitle">DESTINATÁRIO</p>
           <p className={`text ${loading && "shimmer"}`}>{details?.recipient}</p>
 
@@ -124,6 +135,12 @@ const Modal: React.FC<Props> = ({ closeModal, id }) => {
               </p>
             </div>
           </div>
+          <button className="update-button" onClick={handleUpdateStatus}>
+            ATUALIZAR STATUS
+          </button>
+          <button className="misplaced-button" onClick={handleMisplaced}>
+            NOTIFICAR EXTRAVIO
+          </button>
         </div>
       </div>
     </div>

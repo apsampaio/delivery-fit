@@ -71,6 +71,9 @@ const SignIn: React.FC = () => {
             </button>
           </form>
         </div>
+        <p className="inspiration">
+          Inspired by <strong>@tiagoluchtenberg</strong>
+        </p>
       </div>
       <div className="background">
         <div className="inner"></div>

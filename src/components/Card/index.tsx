@@ -32,6 +32,7 @@ const Card: React.FC<Props> = ({ data, index, openModal }) => {
         <strong>Pacote {formattedNumber}</strong>
         <p>{formattedData}</p>
       </div>
+      <p className="owner">{data.user.name}</p>
       <div className="status">
         <StepProgress step={data.status} />
       </div>

@@ -16,7 +16,7 @@ div.modal-container {
 
 div.modal-container div.modal-box {
   width: 740px;
-  height: 380px;
+  height: 420px;
 
   border-radius: 4px;
 
@@ -55,6 +55,7 @@ div.modal-container div.modal-box div.status {
 
   padding-right: 40px;
 }
+
 div.modal-container div.modal-box div.status div.situation-container {
   display: flex;
   flex-wrap: wrap;
@@ -68,6 +69,46 @@ div.modal-container
   div.situation-container
   > div:nth-child(2n) {
   flex-basis: 50%;
+}
+
+div.modal-container div.modal-box div.status button.update-button {
+  height: 48px;
+  width: 70%;
+
+  background-color: var(--color-yellow);
+  color: var(--color-dark-purple);
+
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+
+  border: 0;
+  border-radius: 4px;
+
+  margin-top: 24px;
+
+  transition: opacity 0.3s ease;
+}
+
+div.modal-container div.modal-box div.status button.misplaced-button {
+  height: 48px;
+  width: 70%;
+
+  background-color: var(--color-red);
+  color: var(--color-white);
+
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+
+  border: 0;
+  border-radius: 4px;
+
+  margin-top: 16px;
+
+  transition: opacity 0.3s ease;
+}
+
+div.modal-container div.modal-box div.status button:hover {
+  opacity: 0.8;
 }
 
 div.modal-container div.modal-box .shimmer {

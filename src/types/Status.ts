@@ -1,8 +1,8 @@
 enum Status {
-  Extraviado = 0,
   Aguardando = 1,
   Transporte = 2,
   Entregue = 3,
+  Extraviado = 4,
 }
 
 export { Status };

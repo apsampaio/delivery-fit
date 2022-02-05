@@ -1,6 +1,6 @@
 div.card-container {
   width: 327px;
-  height: 184px;
+  height: 200px;
 
   background-color: var(--color-white);
   border-radius: 4px;
@@ -13,12 +13,10 @@ div.card-container {
 
 div.card-container div.head {
   display: flex;
+  align-items: center;
 
   width: 100%;
-
   padding: 16px 16px 0px 16px;
-
-  align-items: center;
 }
 
 div.card-container div.head img {
@@ -38,6 +36,14 @@ div.card-container div.head strong {
 }
 
 div.card-container div.head p {
+  color: var(--color-purple);
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+}
+
+div.card-container p.owner {
+  margin: 4px 16px 0px auto;
+
   color: var(--color-purple);
   font-family: "Inter", sans-serif;
   font-size: 14px;
