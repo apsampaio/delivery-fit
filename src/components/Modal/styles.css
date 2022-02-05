@@ -15,7 +15,7 @@ div.modal-container {
 }
 
 div.modal-container div.modal-box {
-  width: 740px;
+  min-width: 800px;
   height: 500px;
 
   border-radius: 4px;
@@ -52,8 +52,6 @@ div.modal-container div.modal-box div.status {
 
   display: flex;
   flex-direction: column;
-
-  padding-right: 40px;
 }
 
 div.modal-container div.modal-box div.status div.situation-container {
@@ -61,14 +59,15 @@ div.modal-container div.modal-box div.status div.situation-container {
   flex-wrap: wrap;
 
   justify-content: space-between;
+  padding-right: 40px;
 }
 
 div.modal-container
   div.modal-box
   div.status
   div.situation-container
-  > div:nth-child(2n) {
-  flex-basis: 50%;
+  > div:nth-child(1n) {
+  flex-basis: 40%;
 }
 
 div.modal-container div.modal-box div.status button.update-button {
@@ -114,8 +113,6 @@ div.modal-container div.modal-box div.status button:hover {
 div.modal-container div.modal-box .shimmer {
   animation: shimmer-modal 2s infinite ease;
   background: linear-gradient(to right, #f0f0f5 4%, #e1e1e9 25%, #f0f0f5 36%);
-
-  margin-right: 32px;
 
   text-indent: 100%;
   white-space: nowrap;

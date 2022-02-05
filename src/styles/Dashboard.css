@@ -33,18 +33,21 @@ main.container header button {
   height: 36px;
   width: 100px;
 
-  background-color: var(--color-red);
-  color: var(--color-white);
+  background-color: transparent;
+  color: var(--color-red);
 
   font-family: "Inter", sans-serif;
   font-weight: 500;
 
-  border: 0;
+  border: 2px solid var(--color-red);
   border-radius: 4px;
 
-  margin-top: 24px;
+  transition: background-color 0.3s ease;
+}
 
-  transition: opacity 0.3s ease;
+main.container header button:hover {
+  background-color: var(--color-red);
+  color: var(--color-white);
 }
 
 main.container h1 {

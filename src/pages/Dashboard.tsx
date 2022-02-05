@@ -14,7 +14,7 @@ import Logo from "../assets/Logo.svg";
 import "../styles/Dashboard.css";
 
 function Dashboard() {
-  const { api } = useAuth();
+  const { api, SignOut } = useAuth();
   const [loadingCards, setLoadingCards] = useState(true);
   const [modalVisible, setModalVisible] = useState(false);
   const [packages, setPackages] = useState<Package[]>([]);
@@ -51,7 +51,7 @@ function Dashboard() {
       <main className="container">
         <header>
           <img src={Logo} alt="logo" />
-          <button>Sair</button>
+          <button onClick={SignOut}>Sair</button>
         </header>
         <h1>Pacotes</h1>
         <div className="cards">
