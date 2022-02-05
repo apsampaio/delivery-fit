@@ -18,7 +18,12 @@ const Chart: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [statistics, setStatistics] = useState<Statistics[]>([]);
 
-  const colors = ["#5636D3", "#FF872C", "#12A454", "#E83F5B", "#2F80ED"];
+  const colors: any = {
+    Aguardando: "#5636D3",
+    Transporte: "#FF872C",
+    Entregue: "#12A454",
+    Extraviado: "#E83F5B",
+  };
 
   useEffect(() => {
     const getStatistics = async () => {
@@ -53,8 +58,8 @@ const Chart: React.FC = () => {
           cy="50%"
           outerRadius={100}
         >
-          {statistics.map((_, index) => (
-            <Cell key={`cell-${index}`} fill={colors[index]} />
+          {statistics.map((item, index) => (
+            <Cell key={`cell-${index}`} fill={colors[item.label]} />
           ))}
           <LabelList dataKey="percent" position="inside" />
         </Pie>
@@ -64,7 +69,7 @@ const Chart: React.FC = () => {
           <Label
             title={item.label}
             value={item.value}
-            color={colors[index]}
+            color={colors[item.label]}
             key={item.label}
           />
         ))}
