@@ -57,7 +57,7 @@ const Modal: React.FC<Props> = ({ closeModal, id }) => {
   // TODO
   const handleMisplaced = async () => {
     try {
-      const response = await new ToastPromise().run({
+      await new ToastPromise().run({
         action: () => api.put("/package/misplaced/" + id, {}),
         pending: "Enviando notificação...",
         success: "Notificação enviada.",
@@ -91,6 +91,7 @@ const Modal: React.FC<Props> = ({ closeModal, id }) => {
             <img src={InformationSVG} alt="information" />
             Dados
           </p>
+
           <p className="subtitle">POSTADO POR</p>
           <p className={`text ${loading && "shimmer"}`}>
             {details?.package.user.name}
@@ -107,6 +108,11 @@ const Modal: React.FC<Props> = ({ closeModal, id }) => {
             {info?.localidade}, {info?.uf}
           </p>
           <p className={`text ${loading && "shimmer"}`}>{details?.zipcode}</p>
+
+          <p className="subtitle">IDENTIFICADOR</p>
+          <p className={`text ${loading && "shimmer"}`}>
+            {details?.package.id}
+          </p>
         </div>
         <div className="status">
           <p className="title">

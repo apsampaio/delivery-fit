@@ -14,15 +14,21 @@ class ToastPromise {
   private readonly success = "Ação realizada com sucesso!";
 
   async run({ action, pending, success }: ToastProps) {
-    await toast.promise(action, {
-      pending: pending || this.pending,
-      success: success || this.success,
-      error: {
-        render({ data }) {
-          return axiosErrorMessage(data as Error);
+    return await toast.promise(
+      action,
+      {
+        pending: pending || this.pending,
+        success: success || this.success,
+        error: {
+          render({ data }) {
+            return axiosErrorMessage(data as Error);
+          },
         },
       },
-    });
+      {
+        autoClose: 5000,
+      }
+    );
   }
 }
 

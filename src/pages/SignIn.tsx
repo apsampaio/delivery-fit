@@ -5,9 +5,9 @@ import Username from "../assets/username.svg";
 import Password from "../assets/password.svg";
 
 import { FormEvent, useEffect, useState } from "react";
-import { toast } from "react-toastify";
 import { Input } from "../components/Input";
 import { useAuth } from "../hooks/Auth";
+import { ToastPromise } from "../services/ToastPromise";
 
 const SignIn: React.FC = () => {
   const { SignIn } = useAuth();
@@ -25,17 +25,13 @@ const SignIn: React.FC = () => {
   const handleSubmit = async (ev: FormEvent) => {
     ev.preventDefault();
 
-    return await toast.promise(
-      SignIn({ username, password }),
-      {
+    try {
+      await new ToastPromise().run({
+        action: () => SignIn({ username, password }),
         pending: "Conectando com servidor...",
         success: "Login realizado com sucesso.",
-        error: "Ocorreu um erro durante o login.",
-      },
-      {
-        autoClose: 5000,
-      }
-    );
+      });
+    } catch (error) {}
   };
 
   return (

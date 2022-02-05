@@ -18,6 +18,33 @@ main.container header {
   height: 96px;
 
   padding: 40px 0;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+main.container header img {
+  width: 317px;
+  height: 56px;
+}
+
+main.container header button {
+  height: 36px;
+  width: 100px;
+
+  background-color: var(--color-red);
+  color: var(--color-white);
+
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+
+  border: 0;
+  border-radius: 4px;
+
+  margin-top: 24px;
+
+  transition: opacity 0.3s ease;
 }
 
 main.container h1 {

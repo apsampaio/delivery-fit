@@ -51,6 +51,7 @@ function Dashboard() {
       <main className="container">
         <header>
           <img src={Logo} alt="logo" />
+          <button>Sair</button>
         </header>
         <h1>Pacotes</h1>
         <div className="cards">

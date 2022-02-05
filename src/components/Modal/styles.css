@@ -16,7 +16,7 @@ div.modal-container {
 
 div.modal-container div.modal-box {
   width: 740px;
-  height: 420px;
+  height: 500px;
 
   border-radius: 4px;
 
@@ -164,4 +164,7 @@ div.modal-container div.modal-box p.text {
 
   color: var(--color-purple);
   margin-bottom: 8px;
+
+  line-break: auto;
+  max-width: 90%;
 }
