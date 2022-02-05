@@ -1,0 +1,48 @@
+div.form-component-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 700px;
+}
+
+div.form-component-container form {
+  width: 340px;
+  margin: 60px 0;
+  text-align: center;
+}
+
+div.form-component-container form h1 {
+  font-family: "Inter", sans-serif;
+  color: var(--color-white);
+  margin-bottom: 24px;
+
+  text-align: center;
+}
+
+div.form-component-container form button {
+  height: 56px;
+  width: 100%;
+
+  background-color: var(--color-yellow);
+  color: var(--color-dark-purple);
+
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+
+  border: 0;
+  border-radius: 4px;
+
+  margin-top: 24px;
+
+  transition: opacity 0.3s ease;
+}
+
+div.form-component-container form button:hover {
+  opacity: 0.8;
+}
+
+div.form-component-container form button:disabled {
+  opacity: 0.5;
+}

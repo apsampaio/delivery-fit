@@ -3,20 +3,26 @@ import { useEffect, useState } from "react";
 import { Card } from "../components/Card";
 import { Chart } from "../components/Chart";
 import { Modal } from "../components/Modal";
+import { Form } from "../components/Form";
+
+import Drawer from "react-modern-drawer";
 
 import { Package } from "../types/Package";
 import { useAuth } from "../hooks/Auth";
-
-import { toast } from "react-toastify";
+import { ToastPromise } from "../services/ToastPromise";
 
 import Logo from "../assets/Logo.svg";
 
+import "react-modern-drawer/dist/index.css";
 import "../styles/Dashboard.css";
 
 function Dashboard() {
   const { api, SignOut } = useAuth();
+
   const [loadingCards, setLoadingCards] = useState(true);
   const [modalVisible, setModalVisible] = useState(false);
+  const [drawerVisible, setDrawerVisible] = useState(false);
+
   const [packages, setPackages] = useState<Package[]>([]);
   const [selectedPackage, setSelectedPackage] = useState<string | null>(null);
 
@@ -38,22 +44,39 @@ function Dashboard() {
         setLoadingCards(false);
         setPackages(response.data);
       };
-      await toast.promise(getPackages, {
+
+      await new ToastPromise().run({
+        action: () => getPackages(),
         pending: "Carregando pacotes...",
         success: "Pacotes carregados com sucesso.",
-        error: "Falha no carregamento de pacotes.",
       });
     })();
   }, []);
 
   return (
     <>
+      <Drawer
+        open={drawerVisible}
+        onClose={() => setDrawerVisible((prev) => !prev)}
+        size={500}
+        style={{
+          backgroundColor: "#4c33cc",
+          display: "flex",
+        }}
+        direction="left"
+        className="drawer-component"
+      >
+        <Form closeDrawer={() => setDrawerVisible(false)} />
+      </Drawer>
       <main className="container">
         <header>
           <img src={Logo} alt="logo" />
-          <button onClick={SignOut}>Sair</button>
+          <button onClick={SignOut}>SAIR</button>
         </header>
-        <h1>Pacotes</h1>
+        <div className="packages-header">
+          <h1>Pacotes</h1>
+          <button onClick={() => setDrawerVisible(true)}>NOVO +</button>
+        </div>
         <div className="cards">
           {loadingCards ? (
             <>
