@@ -36,7 +36,6 @@ type UserProps = {
 export const AuthContext = createContext({} as AuthContextData);
 
 export function AuthContextProvider({ children }: AuthContextProviderProps) {
-  const [loggedIn, setLoggedIn] = useState(false);
   const [user, setUser] = useState<null | UserProps>(() => {
     const userExists = localStorage.getItem("DeliveryFIT:user");
     if (!userExists) return null;
@@ -46,6 +45,7 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
     if (isExpired(userData.token)) return null;
     return userData;
   });
+  const [loggedIn, setLoggedIn] = useState(false);
   const [api, setApi] = useState(() =>
     axios.create({
       baseURL: "http://localhost:3000/",

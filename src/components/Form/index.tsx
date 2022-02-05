@@ -37,6 +37,10 @@ const Form: React.FC<FormProps> = ({ closeDrawer }) => {
       });
 
       closeDrawer();
+
+      setRecipient("");
+      setHouseNumber("");
+      setZipcode("");
     } catch (error) {}
   };
 

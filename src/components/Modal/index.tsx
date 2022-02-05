@@ -54,7 +54,6 @@ const Modal: React.FC<Props> = ({ closeModal, id }) => {
     }
   }, []);
 
-  // TODO
   const handleMisplaced = async () => {
     try {
       await new ToastPromise().run({
@@ -65,8 +64,15 @@ const Modal: React.FC<Props> = ({ closeModal, id }) => {
     } catch (error) {}
   };
 
-  // TODO
-  const handleUpdateStatus = () => {};
+  const handleUpdateStatus = async () => {
+    try {
+      await new ToastPromise().run({
+        action: () => api.put("/package/" + id, {}),
+        pending: "Atualizando pacote...",
+        success: "Pacote atualizado.",
+      });
+    } catch (error) {}
+  };
 
   const formatDate = (date: Date) =>
     Intl.DateTimeFormat("pt-BR", {
