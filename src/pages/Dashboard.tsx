@@ -5,9 +5,8 @@ import { Chart } from "../components/Chart";
 import { Modal } from "../components/Modal";
 
 import { Package } from "../types/Package";
-import { Statistics } from "../types/Statistics";
+import { useAuth } from "../hooks/Auth";
 
-import { api } from "../services/api";
 import { toast } from "react-toastify";
 
 import Logo from "../assets/Logo.svg";
@@ -15,11 +14,10 @@ import Logo from "../assets/Logo.svg";
 import "../styles/Dashboard.css";
 
 function Dashboard() {
-  const [loading, setLoading] = useState(true);
+  const { api } = useAuth();
   const [loadingCards, setLoadingCards] = useState(true);
   const [modalVisible, setModalVisible] = useState(false);
   const [packages, setPackages] = useState<Package[]>([]);
-  const [statistics, setStatistics] = useState<Statistics[]>([]);
   const [selectedPackage, setSelectedPackage] = useState<string | null>(null);
 
   const openModal = (id: string) => {
@@ -36,7 +34,6 @@ function Dashboard() {
     (async () => {
       const getPackages = async () => {
         const response = await api.get<Package[]>("package");
-        if (response.status !== 200) throw new Error();
 
         setLoadingCards(false);
         setPackages(response.data);

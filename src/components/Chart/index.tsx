@@ -5,7 +5,7 @@ import { Label } from "../Label";
 
 import { Statistics } from "../../types/Statistics";
 import { Status } from "../../types/Status";
-import { api } from "../../services/api";
+import { useAuth } from "../../hooks/Auth";
 
 type StatisticsProps = {
   status: Status;
@@ -13,6 +13,8 @@ type StatisticsProps = {
 };
 
 const Chart: React.FC = () => {
+  const { api } = useAuth();
+
   const [loading, setLoading] = useState(true);
   const [statistics, setStatistics] = useState<Statistics[]>([]);
 

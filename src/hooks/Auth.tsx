@@ -5,12 +5,14 @@ import {
   useEffect,
   useState,
 } from "react";
-import { api } from "../services/api";
+
+import axios, { AxiosInstance } from "axios";
 import { decodeToken } from "react-jwt";
 
 type AuthContextData = {
   user: UserProps | null;
   loggedIn: boolean;
+  api: AxiosInstance;
   SignIn: (params: SignInParams) => Promise<void>;
 };
 
@@ -35,8 +37,17 @@ export const AuthContext = createContext({} as AuthContextData);
 export function AuthContextProvider({ children }: AuthContextProviderProps) {
   const [user, setUser] = useState<null | UserProps>(null);
   const [loggedIn, setLoggedIn] = useState(false);
+  const [api, setApi] = useState(() =>
+    axios.create({
+      baseURL: "http://localhost:3000/",
+    })
+  );
 
   useEffect(() => {
+    user
+      ? (api.defaults.headers.common["Authorization"] = "Bearer " + user.token)
+      : (api.defaults.headers.common["Authorization"] = "");
+
     setLoggedIn(!!user);
   }, [user]);
 
@@ -55,7 +66,7 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
   };
 
   return (
-    <AuthContext.Provider value={{ user, loggedIn, SignIn }}>
+    <AuthContext.Provider value={{ user, loggedIn, SignIn, api }}>
       {children}
     </AuthContext.Provider>
   );

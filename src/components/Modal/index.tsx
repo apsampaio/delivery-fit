@@ -7,9 +7,10 @@ import closeModalSVG from "../../assets/x.svg";
 
 import { Details } from "../../types/Details";
 import { Status } from "../../types/Status";
+import { useAuth } from "../../hooks/Auth";
 
-import { api } from "../../services/api";
 import axios from "axios";
+import { ToastPromise } from "../../services/ToastPromise";
 
 type Zipcode = {
   logradouro: string;
@@ -24,6 +25,7 @@ type Props = {
 };
 
 const Modal: React.FC<Props> = ({ closeModal, id }) => {
+  const { api } = useAuth();
   const [details, setDetails] = useState<Details | null>(null);
   const [info, setInfo] = useState<Zipcode | null>();
   const [loading, setLoading] = useState(true);
@@ -53,7 +55,15 @@ const Modal: React.FC<Props> = ({ closeModal, id }) => {
   }, []);
 
   // TODO
-  const handleMisplaced = () => {};
+  const handleMisplaced = async () => {
+    try {
+      const response = await new ToastPromise().run({
+        action: () => api.put("/package/misplaced/" + id, {}),
+        pending: "Enviando notificação...",
+        success: "Notificação enviada.",
+      });
+    } catch (error) {}
+  };
 
   // TODO
   const handleUpdateStatus = () => {};
