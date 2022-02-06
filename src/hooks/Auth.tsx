@@ -8,6 +8,8 @@ import {
 
 import axios, { AxiosInstance } from "axios";
 import { decodeToken, isExpired } from "react-jwt";
+import { HubConnectionBuilder, HubConnection } from "@microsoft/signalr";
+import { toast } from "react-toastify";
 
 type AuthContextData = {
   user: UserProps | null;
@@ -52,6 +54,8 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
     })
   );
 
+  const [connection, setConnection] = useState<null | HubConnection>(null);
+
   useEffect(() => {
     user
       ? (api.defaults.headers.common["Authorization"] = "Bearer " + user.token)
@@ -59,6 +63,29 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
 
     setLoggedIn(!!user);
   }, [user]);
+
+  useEffect(() => {
+    if (!!user && !connection) {
+      setConnection(() =>
+        new HubConnectionBuilder()
+          .withUrl("http://localhost:3000/chat")
+          .withAutomaticReconnect()
+          .build()
+      );
+    } else if (!user && connection) {
+      setConnection(null);
+    }
+  }, [user]);
+
+  useEffect(() => {
+    if (connection) {
+      connection.on("package-update", (...data) => {
+        console.log(...data);
+      });
+
+      connection.start();
+    }
+  }, [connection]);
 
   const SignIn = async (params: SignInParams) => {
     try {
