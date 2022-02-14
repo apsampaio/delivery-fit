@@ -38,7 +38,7 @@ const Modal: React.FC<Props> = ({ closeModal, id }) => {
 
   useEffect(() => {
     const getDetails = async (id: string) => {
-      const { data } = await api.get<Details>("package/" + id);
+      const { data } = await api.get<Details>("package/details/" + id);
       setDetails(data);
 
       const res = await axios.get<Zipcode>(
@@ -57,7 +57,7 @@ const Modal: React.FC<Props> = ({ closeModal, id }) => {
   const handleMisplaced = async () => {
     try {
       await new ToastPromise().run({
-        action: () => api.put("/package/misplaced/" + id, {}),
+        action: () => api.patch("package/misplaced/" + id, {}),
         pending: "Enviando notificação...",
         success: "Notificação enviada.",
       });
@@ -67,7 +67,7 @@ const Modal: React.FC<Props> = ({ closeModal, id }) => {
   const handleUpdateStatus = async () => {
     try {
       await new ToastPromise().run({
-        action: () => api.put("/package/" + id, {}),
+        action: () => api.patch("/package/" + id, {}),
         pending: "Atualizando pacote...",
         success: "Pacote atualizado.",
       });
@@ -161,7 +161,7 @@ const Modal: React.FC<Props> = ({ closeModal, id }) => {
             ATUALIZAR STATUS
           </button>
           <button className="misplaced-button" onClick={handleMisplaced}>
-            NOTIFICAR EXTRAVIO
+            NOTIFICAR PERDIDO
           </button>
         </div>
       </div>

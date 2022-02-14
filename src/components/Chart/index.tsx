@@ -22,12 +22,12 @@ const Chart: React.FC = () => {
     Aguardando: "#5636D3",
     Transporte: "#FF872C",
     Entregue: "#12A454",
-    Extraviado: "#E83F5B",
+    Perdido: "#E83F5B",
   };
 
   useEffect(() => {
     const getStatistics = async () => {
-      const { data } = await api.get<StatisticsProps[]>("statistics");
+      const { data } = await api.get<StatisticsProps[]>("package/statistics");
 
       let total = 0;
       data.map((item) => (total += item.count));

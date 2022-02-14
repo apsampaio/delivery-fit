@@ -6,11 +6,11 @@ type Props = {
 };
 
 const StepProgress: React.FC<Props> = ({ step }) => {
-  return step === Status.Extraviado ? (
+  return step === Status.Perdido ? (
     <div className="progress-container">
       <ul className="progressbar">
         <li className="misplaced hidden">AGUARDANDO</li>
-        <li className="misplaced">EXTRAVIADO</li>
+        <li className="misplaced">PERDIDO</li>
         <li className="misplaced hidden">ENTREGUE</li>
       </ul>
     </div>
