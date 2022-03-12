@@ -40,7 +40,6 @@ function Dashboard() {
     (async () => {
       const getPackages = async () => {
         const response = await api.get<Package[]>("package");
-
         setLoadingCards(false);
         setPackages(response.data);
       };

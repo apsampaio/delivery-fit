@@ -6,13 +6,14 @@ import {
   useState,
 } from "react";
 
-import axios, { AxiosInstance } from "axios";
+import axios, { AxiosInstance, AxiosRequestHeaders } from "axios";
 import { decodeToken, isExpired } from "react-jwt";
 
 type AuthContextData = {
   user: UserProps | null;
   loggedIn: boolean;
   api: AxiosInstance;
+  AuthAPI: AxiosInstance;
   SignIn: (params: SignInParams) => Promise<void>;
   SignOut: () => void;
 };
@@ -46,9 +47,16 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
     return userData;
   });
   const [loggedIn, setLoggedIn] = useState(false);
+
+  const [AuthAPI, setAuthAPI] = useState(() =>
+    axios.create({
+      baseURL: "http://localhost:3001/",
+    })
+  );
+
   const [api, setApi] = useState(() =>
     axios.create({
-      baseURL: "http://localhost:3000/",
+      baseURL: "http://localhost:3002/",
     })
   );
 
@@ -62,8 +70,8 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
 
   const SignIn = async (params: SignInParams) => {
     try {
-      const response = await api.post("auth/sign-in", params);
-      const data = decodeToken(response.data.token) as UserProps;
+      const response = await AuthAPI.post("sign-in", params);
+      const data = decodeToken(response.data) as UserProps;
       const userData = {
         name: data.name,
         nameid: data.nameid,
@@ -81,7 +89,9 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
   };
 
   return (
-    <AuthContext.Provider value={{ user, loggedIn, SignIn, SignOut, api }}>
+    <AuthContext.Provider
+      value={{ user, loggedIn, SignIn, SignOut, api, AuthAPI }}
+    >
       {children}
     </AuthContext.Provider>
   );
