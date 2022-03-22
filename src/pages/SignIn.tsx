@@ -24,6 +24,7 @@ const SignIn: React.FC = () => {
 
   const handleSubmit = async (ev: FormEvent) => {
     ev.preventDefault();
+    // FIXME success with 400 status
 
     try {
       await new ToastPromise().run({
@@ -38,7 +39,10 @@ const SignIn: React.FC = () => {
     <main className="sign-in-container">
       <div className="content">
         <div className="animated-content">
-          <img src={LogoWhite} alt="Logo" />
+          <img
+            src="https://raw.githubusercontent.com/apsampaio/delivery-fit/main/src/assets/LogoWhite.svg"
+            alt="Logo"
+          />
           <form onSubmit={handleSubmit}>
             <p>
               Faça seu login para acompanhar entregas na plataforma
@@ -51,7 +55,10 @@ const SignIn: React.FC = () => {
               value={username}
               minLength={5}
             >
-              <img src={Username} alt="user-icon" />
+              <img
+                src="https://raw.githubusercontent.com/apsampaio/delivery-fit/main/src/assets/username.svg"
+                alt="user-icon"
+              />
             </Input>
             <Input
               placeholder="Senha"
@@ -60,7 +67,10 @@ const SignIn: React.FC = () => {
               value={password}
               minLength={8}
             >
-              <img src={Password} alt="password-icon" />
+              <img
+                src="https://raw.githubusercontent.com/apsampaio/delivery-fit/main/src/assets/password.svg"
+                alt="password-icon"
+              />
             </Input>
             <button disabled={isButtonDisabled} type="submit">
               Entrar

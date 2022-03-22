@@ -28,17 +28,23 @@ const Card: React.FC<Props> = ({ data, index, openModal }) => {
   return (
     <div className="card-container">
       <div className="head">
-        <img src={PackageSVG} alt="package" />
+        <img
+          src="https://raw.githubusercontent.com/apsampaio/delivery-fit/main/src/assets/Package.svg"
+          alt="package"
+        />
         <strong>Pacote {formattedNumber}</strong>
         <p>{formattedData}</p>
       </div>
-      <p className="owner">{data.user.name}</p>
+      <p className="owner">{data.createdBy}</p>
       <div className="status">
         <StepProgress step={data.status} />
       </div>
       <button className="details" onClick={() => handleOpenModal(data.id)}>
         <p>Detalhes</p>
-        <img src={Arrow} alt="arrow" />
+        <img
+          src="https://raw.githubusercontent.com/apsampaio/delivery-fit/main/src/assets/Arrow.svg"
+          alt="arrow"
+        />
       </button>
     </div>
   );

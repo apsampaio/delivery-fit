@@ -67,7 +67,7 @@ const Modal: React.FC<Props> = ({ closeModal, id }) => {
   const handleUpdateStatus = async () => {
     try {
       await new ToastPromise().run({
-        action: () => api.patch("/package/" + id, {}),
+        action: () => api.patch("/package/status/" + id, {}),
         pending: "Atualizando pacote...",
         success: "Pacote atualizado.",
       });
@@ -87,20 +87,23 @@ const Modal: React.FC<Props> = ({ closeModal, id }) => {
     <div className="modal-container" onClick={handleClick}>
       <div className="modal-box">
         <img
-          src={closeModalSVG}
+          src="https://raw.githubusercontent.com/apsampaio/delivery-fit/main/src/assets/x.svg"
           alt="close"
           className="close-modal"
           onClick={closeModal}
         />
         <div className="information">
           <p className="title">
-            <img src={InformationSVG} alt="information" />
+            <img
+              src="https://raw.githubusercontent.com/apsampaio/delivery-fit/main/src/assets/Information.svg"
+              alt="information"
+            />
             Dados
           </p>
 
           <p className="subtitle">POSTADO POR</p>
           <p className={`text ${loading && "shimmer"}`}>
-            {details?.package.user.name}
+            {details?.package.createdBy}
           </p>
 
           <p className="subtitle">DESTINATÁRIO</p>
@@ -122,7 +125,10 @@ const Modal: React.FC<Props> = ({ closeModal, id }) => {
         </div>
         <div className="status">
           <p className="title">
-            <img src={StatusSVG} alt="information" />
+            <img
+              src="https://raw.githubusercontent.com/apsampaio/delivery-fit/main/src/assets/Status.svg"
+              alt="information"
+            />
             Situação
           </p>
           <div className="situation-container">

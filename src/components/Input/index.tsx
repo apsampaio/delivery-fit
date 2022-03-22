@@ -20,7 +20,11 @@ const Input: React.FC<InputProps> = ({ children, isPassword, ...rest }) => {
       <input type={!visible ? "text" : "password"} {...rest} />
       {isPassword && (
         <img
-          src={visible ? Eye : EyeClose}
+          src={
+            visible
+              ? "https://raw.githubusercontent.com/apsampaio/delivery-fit/main/src/assets/Eye.svg"
+              : "https://raw.githubusercontent.com/apsampaio/delivery-fit/main/src/assets/EyeClose.svg"
+          }
           alt="visibility-icon"
           className="visiblity"
           onClick={toggleVisibility}

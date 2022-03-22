@@ -1,6 +1,7 @@
 main.container {
-  background: var(--color-ice-white) url("../assets/Background.svg") no-repeat
-    90% top;
+  background: var(--color-ice-white)
+    url("https://raw.githubusercontent.com/apsampaio/delivery-fit/main/src/assets/Background.svg")
+    no-repeat 90% top;
 
   width: 100vw;
   height: 100vh;

@@ -56,7 +56,10 @@ const Form: React.FC<FormProps> = ({ closeDrawer }) => {
           minLength={5}
           required
         >
-          <img src={User} alt="user-icon" />
+          <img
+            src="https://raw.githubusercontent.com/apsampaio/delivery-fit/main/src/assets/username.svg"
+            alt="user-icon"
+          />
         </Input>
         <Input
           type="number"
@@ -67,7 +70,10 @@ const Form: React.FC<FormProps> = ({ closeDrawer }) => {
           min={1}
           required
         >
-          <img src={Map} alt="map-icon" />
+          <img
+            src="https://raw.githubusercontent.com/apsampaio/delivery-fit/main/src/assets/map.svg"
+            alt="map-icon"
+          />
         </Input>
         <Input
           type="number"
@@ -78,7 +84,10 @@ const Form: React.FC<FormProps> = ({ closeDrawer }) => {
           min={1}
           required
         >
-          <img src={House} alt="house-icon" />
+          <img
+            src="https://raw.githubusercontent.com/apsampaio/delivery-fit/main/src/assets/house.svg"
+            alt="house-icon"
+          />
         </Input>
 
         <button disabled={false} type="submit">

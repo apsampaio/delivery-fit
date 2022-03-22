@@ -4,9 +4,7 @@ type Package = {
   id: string;
   status: Status;
   updatedAt: Date;
-  user: {
-    name: string;
-  };
+  createdBy: string;
 };
 
 export type { Package };

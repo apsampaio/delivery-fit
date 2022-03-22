@@ -76,7 +76,7 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
         name: data.name,
         nameid: data.nameid,
         exp: data.exp,
-        token: response.data.token,
+        token: response.data,
       };
       setUser(userData);
       localStorage.setItem("DeliveryFIT:user", JSON.stringify(userData));
