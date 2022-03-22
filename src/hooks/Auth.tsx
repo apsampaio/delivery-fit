@@ -69,18 +69,16 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
   }, [user]);
 
   const SignIn = async (params: SignInParams) => {
-    try {
-      const response = await AuthAPI.post("sign-in", params);
-      const data = decodeToken(response.data) as UserProps;
-      const userData = {
-        name: data.name,
-        nameid: data.nameid,
-        exp: data.exp,
-        token: response.data,
-      };
-      setUser(userData);
-      localStorage.setItem("DeliveryFIT:user", JSON.stringify(userData));
-    } catch (error) {}
+    const response = await AuthAPI.post("sign-in", params);
+    const data = decodeToken(response.data) as UserProps;
+    const userData = {
+      name: data.name,
+      nameid: data.nameid,
+      exp: data.exp,
+      token: response.data,
+    };
+    setUser(userData);
+    localStorage.setItem("DeliveryFIT:user", JSON.stringify(userData));
   };
 
   const SignOut = () => {

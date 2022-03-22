@@ -69,7 +69,10 @@ function Dashboard() {
       </Drawer>
       <main className="container">
         <header>
-          <img src={Logo} alt="logo" />
+          <img
+            src="https://raw.githubusercontent.com/apsampaio/delivery-fit/main/src/assets/Logo.svg"
+            alt="logo"
+          />
           <button onClick={SignOut}>SAIR</button>
         </header>
         <div className="packages-header">
